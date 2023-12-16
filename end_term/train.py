@@ -10,7 +10,8 @@ import jieba
 from end_term.model.model import Model
 
 # 读取数据集
-df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/data.xls')
+# df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/data.xls')
+df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/shuffled_data.xls')
 # 划分训练集和验证集
 train_df, val_df = train_test_split(df, test_size=0.2, random_state=42)
 
