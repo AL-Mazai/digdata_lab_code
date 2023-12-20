@@ -22,8 +22,7 @@ class DepressionDataset(Dataset):
         }
 
 # 读取数据集
-df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_2.xls')
-# df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1.xls')
+df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1.xls')
 # df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1_shuffled.xls')
 # 划分训练集和验证集
 train_df, val_df = train_test_split(df, test_size=0.2, random_state=42)

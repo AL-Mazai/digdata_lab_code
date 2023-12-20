@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     max_len = 50  # 根据实际情况调整
     # 加载测试数据集
-    test_df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/test_data.xls')  # 请替换为你的测试集路径
+    test_df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/test_data_2.xls')  # 请替换为你的测试集路径
 
     # 初始化测试数据集和数据加载器
     test_dataset = DepressionDataset(test_df, max_len)
