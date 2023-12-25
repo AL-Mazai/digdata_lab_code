@@ -41,7 +41,7 @@ if __name__ == "__main__":
 
     max_len = 50  # 根据实际情况调整
     # 加载测试数据集
-    test_df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/test_data_2.xls')  # 请替换为你的测试集路径
+    test_df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/test_data_1_1430.xls')  # 请替换为你的测试集路径
 
     # 初始化测试数据集和数据加载器
     test_dataset = DepressionDataset(test_df, max_len)
@@ -74,21 +74,21 @@ if __name__ == "__main__":
     accuracy = accuracy_score(all_labels, all_preds)
     classification_rep = classification_report(all_labels, all_preds)
 
-    print(f'Test Accuracy: {accuracy:.4f}')
-    print('Test Classification Report:')
+    print(f'textCNN Test Accuracy: {accuracy:.4f}')
+    print('textCNN Test Classification Report:')
     print(classification_rep)
 
     # 数据可视化
     # 这里可以按照你的需求进行可视化，例如混淆矩阵等
     # 计算混淆矩阵
-    conf_mat = confusion_matrix(all_labels, all_preds)
+    conf_mat_test = confusion_matrix(all_labels, all_preds)
 
     # 可视化混淆矩阵
     plt.figure(figsize=(8, 6))
-    sns.heatmap(conf_mat, annot=True, fmt='d', cmap='Blues',
-                xticklabels=['Class 0', 'Class 1'],
-                yticklabels=['Class 0', 'Class 1'])
-    plt.xlabel('Predicted')
-    plt.ylabel('True')
-    plt.title('Confusion Matrix')
+    sns.heatmap(conf_mat_test, annot=True, fmt='d', cmap='Blues',
+                xticklabels=['0', '1'],
+                yticklabels=['0', '1'])
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.title('Test Confusion Matrix - textCNN')
     plt.show()

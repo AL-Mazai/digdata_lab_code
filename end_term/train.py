@@ -4,6 +4,8 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 from sklearn.metrics import accuracy_score, classification_report
 import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
 from end_term.dateSet.process import word_to_idx, DepressionDataset, train_df, val_df, collate_fn
 from end_term.model.model import Model
@@ -29,7 +31,7 @@ optimizer = optim.Adam(model.parameters(), lr=0.001)
 
 
 # 训练模型
-num_epochs = 20
+num_epochs = 10
 train_losses = []
 val_losses = []
 
@@ -113,9 +115,8 @@ with torch.no_grad():
 # 计算准确率和分类报告
 accuracy = accuracy_score(all_labels, all_preds)
 classification_rep = classification_report(all_labels, all_preds)
-
-print(f'Accuracy: {accuracy:.4f}')
-print('Classification Report:')
+print(f'textCNN Accuracy: {accuracy:.4f}')
+print('textCNN Classification Report:')
 print(classification_rep)
 
 # 数据可视化
@@ -125,6 +126,19 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.legend()
 plt.show()
+
+# 画测试集和验证集结果混淆矩阵
+conf_matrix_val = confusion_matrix(all_labels, all_preds)
+
+# 绘制混淆矩阵热图
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix_val, annot=True, fmt='d', cmap='Blues',
+            xticklabels=['0', '1'], yticklabels=['0', '1'])
+plt.xlabel('Predicted Label')
+plt.ylabel('True Label')
+plt.title('Val Confusion Matrix - textCNN')
+plt.show()
+
 
 # 保存训练好的模型
 torch.save(model.state_dict(), 'D:/a_zzw/a_code/github/大数据/code/end_term/model/model.pth')

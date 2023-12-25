@@ -280,7 +280,7 @@ if __name__ == '__main__':
     password = "hjd030811"  # 你的密码
     driver = webdriver.Chrome()  # 你的chromedriver的地址
     driver.implicitly_wait(2)  # 隐式等待2秒
-    book_name_xls = "test_data_1.xls"  # 填写你想存放excel的路径，没有文件会自动创建
+    book_name_xls = "test_data_1_1430.xls"  # 填写你想存放excel的路径，没有文件会自动创建
     sheet_name_xls = '微博数据'  # sheet表名
     maxWeibo = 5  # 设置最多多少条微博
     keywords = ["阳光", ]  # 此处可以设置多个超话关键词

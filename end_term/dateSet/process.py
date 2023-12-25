@@ -8,10 +8,8 @@ class DepressionDataset(Dataset):
     def __init__(self, dataframe, max_len):
         self.data = dataframe
         self.max_len = max_len
-
     def __len__(self):
         return len(self.data)
-
     def __getitem__(self, index):
         text = str(self.data.iloc[index]['text'])
         label = int(self.data.iloc[index]['label'])
@@ -22,20 +20,19 @@ class DepressionDataset(Dataset):
         }
 
 # 读取数据集
-df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1.xls')
+df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1_3500.xls')
 # df = pd.read_excel('D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/train_data_1_shuffled.xls')
 # 划分训练集和验证集
 train_df, val_df = train_test_split(df, test_size=0.2, random_state=42)
-
+# 加载停用词列表
 def load_stopwords(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         stopwords = [line.strip() for line in file]
     return set(stopwords)
-# 停用词列表
 stopwords_path = 'D:/a_zzw/a_code/github/大数据/code/end_term/dateSet/cn_stopwords.txt'
 stopwords_set = load_stopwords(stopwords_path)
 
-# 分词函数
+# 分词
 def tokenize_text(text):
     if isinstance(text, str):
         # 使用jieba分词
@@ -45,8 +42,9 @@ def tokenize_text(text):
         return filtered_words
     else:
         return []
+
 # 定义数据集类
-# 构建词汇表
+# 构建词汇表，将每个词映射为唯一的整数标识符，使得模型可以使用整数来表示文本数据
 vocab = set()
 for text in df['text']:
     tokens = tokenize_text(text)
